@@ -3,566 +3,217 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-</head>
-<body>
-<title>MatScienceAI Homepage</title>
+<title>MatScienceAI</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="MatScienceAI is a materials science company. Our flagship line is liquid coolant for direct-to-chip cooling in AI data centers: MS-PG25, MS-DC6 and MS-PG0.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Schibsted+Grotesk:wght@500;600;700&display=swap">
-<style>
-/* Layout: left-aligned engineering page. The hero is a live cold-plate loop diagram; everything else stays quiet and tabular. */
-:root {
-  --paper: #F1F4F4;
-  --surface: #FFFFFF;
-  --ink: #0B1D24;
-  --muted: #52656C;
-  --line: #CFD9DB;
-  --cool: #0E6BA8;
-  --warm: #D9531E;
-  --pill-ok: #E1F0E8;
-  --pill-ok-ink: #1E6B45;
-  --pill-dev: #F6ECDD;
-  --pill-dev-ink: #8A5413;
-  --display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --body: "IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
-  --step--1: 0.875rem;
-  --step-0: 1rem;
-  --step-1: 1.25rem;
-  --step-2: 1.75rem;
-  --step-3: clamp(1.9rem, 3.6vw, 2.6rem);
-  --step-4: clamp(2.4rem, 5.4vw, 4.1rem);
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #0A1418; --surface: #10202A; --ink: #E4EDEF; --muted: #92A6AD; --line: #22363F;
-    --cool: #52ADE6; --warm: #FF8A50;
-    --pill-ok: #143326; --pill-ok-ink: #7FD6A6; --pill-dev: #3A2A14; --pill-dev-ink: #F2BF7A;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #0A1418; --surface: #10202A; --ink: #E4EDEF; --muted: #92A6AD; --line: #22363F;
-  --cool: #52ADE6; --warm: #FF8A50;
-  --pill-ok: #143326; --pill-ok-ink: #7FD6A6; --pill-dev: #3A2A14; --pill-dev-ink: #F2BF7A;
-  color-scheme: dark;
-}
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
 
-* { box-sizing: border-box; }
-body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--body);
-  font-size: var(--step-0);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
-.wrap {
-  max-width: 1180px;
-  margin-inline: auto;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-}
-@media (min-width: 720px) { .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); } }
-h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; letter-spacing: -0.015em; }
-h1 { font-size: var(--step-4); line-height: 1.02; font-weight: 700; letter-spacing: -0.03em; }
-h2 { font-size: var(--step-3); line-height: 1.1; font-weight: 700; }
-h3 { font-size: var(--step-1); line-height: 1.25; font-weight: 600; }
-p { margin: 0; }
-a { color: inherit; }
-:focus-visible { outline: 2px solid var(--cool); outline-offset: 3px; border-radius: 2px; }
-
-.btn {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  font: 500 var(--step-0)/1 var(--body);
-  padding: 0.85rem 1.25rem; border-radius: 6px; text-decoration: none; cursor: pointer;
-  border: 1px solid var(--ink);
-}
-.btn-solid { background: var(--ink); color: var(--paper); }
-.btn-solid:hover { background: transparent; color: var(--ink); }
-.btn-line { background: transparent; color: var(--ink); border-color: var(--line); }
-.btn-line:hover { border-color: var(--ink); }
-
-/* Prototype note */
-.proto { font-size: var(--step--1); color: var(--muted); border-bottom: 1px solid var(--line); }
-.proto .wrap { padding-block: 0.5rem; }
-
-/* Header */
-header.site { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); border-bottom: 1px solid var(--line); }
-header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.9rem; }
-.brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; font: 700 1.2rem/1 var(--display); letter-spacing: -0.02em; }
-.brand svg { width: 26px; height: 26px; flex: none; }
-nav.primary { display: flex; gap: 1.6rem; font-size: var(--step--1); }
-nav.primary a { text-decoration: none; color: var(--muted); }
-nav.primary a:hover { color: var(--ink); }
-header.site .btn { padding: 0.6rem 1rem; font-size: var(--step--1); }
-@media (max-width: 860px) { nav.primary { display: none; } }
-.cta-short { display: none; }
-@media (max-width: 520px) { .cta-long { display: none; } .cta-short { display: inline; } }
-
-/* Hero */
-.hero .wrap { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(2rem, 4vw, 4rem); align-items: center; padding-block: clamp(2.5rem, 6vw, 5rem) clamp(2.5rem, 5vw, 4rem); }
-.hero-copy { display: grid; gap: 1.4rem; min-width: 0; }
-.hero-copy .lede { font-size: var(--step-1); color: var(--muted); max-width: 34rem; line-height: 1.5; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-.heritage { font-size: var(--step--1); color: var(--muted); }
-.heritage strong { color: var(--ink); font-weight: 500; }
-figure.loop { margin: 0; min-width: 0; display: grid; gap: 0.75rem; }
-.loop-frame { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
-.loop-frame canvas { display: block; width: 100%; aspect-ratio: 720 / 460; max-width: 100%; }
-.loop-toggle { position: absolute; right: 10px; bottom: 10px; font: 500 0.75rem/1 var(--body); color: var(--muted); background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 0.4rem 0.6rem; cursor: pointer; }
-.loop-toggle:hover { color: var(--ink); border-color: var(--ink); }
-figcaption { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; font-size: var(--step--1); color: var(--muted); }
-.key { display: inline-flex; align-items: center; gap: 0.45rem; }
-.key i { width: 18px; height: 4px; border-radius: 2px; display: inline-block; }
-@media (max-width: 860px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } }
-
-/* Proof */
-.proof { border-block: 1px solid var(--line); background: var(--surface); }
-.proof .wrap { padding-block: 2.2rem; display: grid; gap: 1.6rem; }
-.proof-head { color: var(--muted); max-width: 44rem; }
-.names { display: flex; flex-wrap: wrap; gap: 0.6rem 2.4rem; font: 600 clamp(1.05rem, 1.8vw, 1.35rem)/1.2 var(--display); letter-spacing: -0.01em; list-style: none; padding: 0; margin: 0; }
-.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; border-top: 1px solid var(--line); padding-top: 1.6rem; }
-.fact { display: grid; gap: 0.2rem; min-width: 0; }
-.fact b { font: 700 var(--step-2)/1.1 var(--display); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
-.fact span { color: var(--muted); font-size: var(--step--1); }
-@media (max-width: 640px) { .facts { grid-template-columns: minmax(0, 1fr); } }
-
-/* Sections */
-section.block .wrap { padding-block: clamp(3.5rem, 7vw, 6rem); display: grid; gap: 2.2rem; }
-.section-head { display: grid; gap: 0.9rem; max-width: 46rem; }
-.section-head p { color: var(--muted); font-size: var(--step-1); line-height: 1.5; }
-
-/* Coolant comparison */
-.table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
-table.compare { width: 100%; min-width: 680px; border-collapse: collapse; font-size: var(--step--1); }
-.compare th, .compare td { text-align: left; vertical-align: top; padding: 1rem 1.2rem; border-bottom: 1px solid var(--line); }
-.compare tr:last-child th, .compare tr:last-child td { border-bottom: 0; }
-.compare thead th { vertical-align: bottom; padding-block: 1.4rem 1.1rem; }
-.compare tbody th { color: var(--muted); font-weight: 500; width: 18%; }
-.compare td { width: 27.3%; }
-.compare td + td, .compare th + td { border-left: 1px solid var(--line); }
-.compare thead th + th { border-left: 1px solid var(--line); }
-.fluid-name { display: block; font: 700 var(--step-2)/1 var(--display); letter-spacing: -0.02em; color: var(--ink); margin-bottom: 0.6rem; }
-.pill { display: inline-block; font-size: 0.75rem; font-weight: 500; padding: 0.2rem 0.55rem; border-radius: 99px; }
-.pill.ok { background: var(--pill-ok); color: var(--pill-ok-ink); }
-.pill.dev { background: var(--pill-dev); color: var(--pill-dev-ink); }
-.compare .cta-row td { padding-block: 1.2rem; }
-.compare .cta-row a { font-weight: 500; }
-.note { font-size: var(--step--1); color: var(--muted); }
-
-/* Software */
-.sw { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 4vw, 4rem); align-items: start; }
-.io { display: grid; gap: 0.9rem; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.4rem; min-width: 0; }
-.io h3 { font-size: var(--step-0); }
-.io ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.45rem; }
-.io li { font-size: var(--step--1); border: 1px solid var(--line); border-radius: 4px; padding: 0.3rem 0.6rem; }
-.io .arrow { display: flex; align-items: center; gap: 0.6rem; color: var(--muted); font-size: var(--step--1); }
-.io .arrow::before, .io .arrow::after { content: ""; height: 1px; background: var(--line); flex: 1; }
-.io .out li { border-color: var(--cool); color: var(--cool); }
-.caps { display: grid; gap: 1.4rem; margin: 0; }
-.caps div { display: grid; gap: 0.3rem; }
-.caps dt { font: 600 var(--step-1)/1.25 var(--display); }
-.caps dd { margin: 0; color: var(--muted); max-width: 36rem; }
-.limits { border-top: 1px solid var(--line); padding-top: 1.2rem; display: grid; gap: 0.4rem; }
-.limits h3 { font-size: var(--step-0); }
-.limits p { color: var(--muted); font-size: var(--step--1); max-width: 40rem; }
-@media (max-width: 860px) { .sw { grid-template-columns: minmax(0, 1fr); } }
-
-/* Co-development steps */
-ol.steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; counter-reset: s; border-top: 2px solid var(--ink); }
-ol.steps li { counter-increment: s; padding: 1.2rem 1.4rem 0 0; display: grid; gap: 0.5rem; align-content: start; min-width: 0; }
-ol.steps li::before { content: counter(s); font: 700 var(--step-2)/1 var(--display); color: var(--muted); font-variant-numeric: tabular-nums; }
-ol.steps p { color: var(--muted); font-size: var(--step--1); }
-@media (max-width: 860px) { ol.steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.6rem; } }
-@media (max-width: 480px) { ol.steps { grid-template-columns: minmax(0, 1fr); } }
-
-/* Blog */
-.post { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem 2rem; align-items: end; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: 1.6rem; }
-.post time { font-size: var(--step--1); color: var(--muted); }
-.post h3 { font-size: var(--step-2); margin-block: 0.3rem 0.5rem; }
-.post p { color: var(--muted); max-width: 44rem; }
-@media (max-width: 640px) { .post { grid-template-columns: minmax(0, 1fr); } }
-
-/* Contact */
-.contact { background: var(--ink); color: var(--paper); }
-.contact .wrap { padding-block: clamp(3rem, 6vw, 5rem); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 2rem; align-items: end; }
-.contact h2 { color: var(--paper); }
-.contact p { color: color-mix(in srgb, var(--paper) 72%, var(--ink)); margin-top: 1rem; max-width: 34rem; }
-.contact-actions { display: grid; gap: 1rem; justify-items: start; }
-.contact .btn-solid { background: var(--paper); color: var(--ink); border-color: var(--paper); }
-.contact .btn-solid:hover { background: transparent; color: var(--paper); }
-.email { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; font-size: var(--step--1); }
-.email code { font: 500 var(--step-0)/1 var(--body); user-select: all; }
-.email button { font: 500 0.75rem/1 var(--body); background: transparent; color: inherit; border: 1px solid color-mix(in srgb, var(--paper) 40%, var(--ink)); border-radius: 4px; padding: 0.35rem 0.6rem; cursor: pointer; }
-@media (max-width: 760px) { .contact .wrap { grid-template-columns: minmax(0, 1fr); } }
-
-footer.site .wrap { padding-block: 2rem 2.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; font-size: var(--step--1); color: var(--muted); }
-footer.site nav { display: flex; flex-wrap: wrap; gap: 1.2rem; }
-footer.site a { text-decoration: none; }
-footer.site a:hover { color: var(--ink); }
-
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
-</style>
-
-<div class="proto"><div class="wrap">Homepage prototype for review. Product, software and validation details are taken from matscienceai.com.</div></div>
-
-<header class="site">
+<header class="site-header">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="MatScienceAI home">
-      <svg viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 15c2.5-3 5.5-3 8 0s5.5 3 8 0" fill="none" stroke="var(--cool)" stroke-width="2.2" stroke-linecap="round"/></svg>
+    <a class="brand" href="index.html" aria-label="MatScienceAI home">
+      <svg viewBox="0 0 28 28" aria-hidden="true"><rect x="1" y="1" width="26" height="26" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 16c2.6-3.2 5.6-3.2 8 0s5.4 3.2 8 0" fill="none" stroke="#1B5BFF" stroke-width="2.4" stroke-linecap="round"/></svg>
       MatScienceAI
     </a>
-    <nav class="primary" aria-label="Primary">
-      <a href="#coolants">Coolants</a>
-      <a href="#software">Predictive software</a>
-      <a href="#codev">Co-development</a>
-      <a href="#blog">Blog</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#coolants">Liquid coolants</a>
+      <a href="magnesium.html">Magnesium alloys</a>
+      <a href="#why">Why MatScienceAI</a>
+      <a href="#more">Work with us</a>
+      <a href="https://www.matscienceai.com/blog" target="_blank" rel="noopener">Blog</a>
     </nav>
-    <a class="btn btn-solid" href="#contact"><span class="cta-long">Request a datasheet</span><span class="cta-short">Contact</span></a>
+    <a class="btn btn-blue" href="#contact">Contact us</a>
   </div>
 </header>
 
-<main id="top">
-  <section class="hero">
+<main>
+  <section class="hero band-black">
     <div class="wrap">
       <div class="hero-copy">
-        <h1>Coolant for the cold plate loops that run AI</h1>
-        <p class="lede">PG25 and DC6 for direct-to-chip liquid cooling, formulated with machine learning and physics models, and running in AI data centers for up to three years.</p>
+        <p class="hero-kicker"><strong>A materials science company</strong></p>
+        <h1>Materials developed with AI, built for production</h1>
+        <p class="lede">Our flagship line is liquid coolant for direct-to-chip cooling in AI data centers, validated in production for up to three years. Magnesium alloys are next.</p>
         <div class="hero-actions">
-          <a class="btn btn-solid" href="#contact">Request a datasheet</a>
-          <a class="btn btn-line" href="#coolants">Compare our coolants</a>
+          <a class="btn btn-blue" href="#coolants">Explore our coolants</a>
+          <a class="btn btn-ghost-dark" href="#contact">Talk to an engineer</a>
         </div>
-        <p class="heritage">Built by a team from <strong>Harvard</strong> and <strong>MIT</strong>, with 30+ years of manufacturing experience behind every formula.</p>
       </div>
-      <figure class="loop">
-        <div class="loop-frame">
-          <canvas id="loop" role="img" aria-label="Diagram of a direct-to-chip cooling loop. Cool coolant leaves the CDU, rises through the rack manifold, passes over the cold plate on each GPU, warms up, and returns to the CDU, where facility water carries the heat away."></canvas>
-          <button class="loop-toggle" id="loopToggle" type="button" aria-pressed="false">Pause</button>
-        </div>
-        <figcaption>
-          <span class="key"><i style="background:var(--cool)"></i>Supply, cool</span>
-          <span class="key"><i style="background:var(--warm)"></i>Return, carrying heat from the GPUs</span>
-        </figcaption>
+      <figure class="hero-photo" style="margin:0">
+        <img src="assets/images/coolant-products.jpg" width="1084" height="850" alt="MatScienceAI liquid coolant in an IBC tote, a drum and a jerrycan">
       </figure>
     </div>
   </section>
 
-  <section class="proof" aria-labelledby="proof-h">
+  <div class="quickbar-host">
+    <div class="quickbar-wrap">
+      <nav class="quickbar" aria-label="Quick links">
+        <a href="#coolants">Find the right coolant for your loop<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#contact">Request a datasheet<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="https://www.matscienceai.com/blog" target="_blank" rel="noopener">Read the coolant blog<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </nav>
+    </div>
+  </div>
+
+  <section class="proof band-white" aria-labelledby="proof-h">
     <div class="wrap">
       <p class="proof-head" id="proof-h">Tested and validated with AI data centers, including:</p>
       <ul class="names">
         <li>Zhejiang Lab</li><li>Huawei</li><li>ByteDance</li><li>Inspur</li><li>Super Fusion</li><li>Nettrix</li><li>Henan Airport</li>
       </ul>
       <div class="facts">
-        <div class="fact"><b>3 years</b><span>Our longest deployment running in production</span></div>
-        <div class="fact"><b>1M+</b><span>Published property measurements our models learn from</span></div>
+        <div class="fact"><b>3 years</b><span>Longest deployment running in production</span></div>
+        <div class="fact"><b>1M+</b><span>Published property measurements behind our models</span></div>
         <div class="fact"><b>30+ years</b><span>Manufacturing experience on the team</span></div>
+        <div class="fact"><b>Harvard, MIT</b><span>Where our founding team comes from</span></div>
       </div>
     </div>
   </section>
 
-  <section class="block" id="coolants" aria-labelledby="coolants-h">
+  <section class="band-black band-pad" id="coolants" aria-labelledby="coolants-h">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="coolants-h">Pick the fluid for your loop</h2>
-        <p>Tell us about your loop and we'll send the datasheet, safety data sheet and sample details for the fluid that fits.</p>
+        <h2 id="coolants-h">Liquid coolants for direct-to-chip cooling</h2>
+        <p>Three fluids for cold plate loops in AI data centers. Tell us about your loop and we'll send the datasheet, safety data sheet and sample details for the one that fits.</p>
       </div>
-      <div class="table-scroll">
-        <table class="compare">
-          <thead>
-            <tr>
-              <th scope="col"><span class="note">Coolant</span></th>
-              <th scope="col"><span class="fluid-name">PG25</span><span class="pill ok">Available</span></th>
-              <th scope="col"><span class="fluid-name">DC6</span><span class="pill ok">Available</span></th>
-              <th scope="col"><span class="fluid-name">PG0</span><span class="pill dev">In development</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><th scope="row">Glycol content</th><td>25% propylene glycol</td><td>Low glycol, water-based</td><td>No propylene glycol</td></tr>
-            <tr><th scope="row">Inhibitor package</th><td>Phosphate-free organic acid</td><td>Corrosion inhibitor package, formulated and made in-house</td><td>To be announced</td></tr>
-            <tr><th scope="row">Made for</th><td>Cold plate loops designed around PG25, the fluid the Open Compute Project's guidelines are written for</td><td>Direct-to-chip loops where you want less glycol than a PG25 carries</td><td>Loops that need to avoid glycol entirely. No release date set yet.</td></tr>
-            <tr><th scope="row">What you get</th><td>Datasheet, safety data sheet, sample details</td><td>Datasheet, safety data sheet, sample details</td><td>Progress updates as the work moves forward</td></tr>
-            <tr class="cta-row"><th scope="row"></th><td><a href="#contact">Request PG25 information</a></td><td><a href="#contact">Request DC6 information</a></td><td><a href="#contact">Register interest in PG0</a></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="note">Full test data is available under NDA.</p>
-    </div>
-  </section>
-
-  <section class="block" id="software" aria-labelledby="software-h" style="background:var(--surface);border-block:1px solid var(--line)">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 id="software-h">Test fewer formulations to find the right one</h2>
-        <p>License the models we use to develop our own fluids. They combine machine learning with physics-based engineering models, so your team can rule candidates out on a screen instead of at the bench.</p>
-      </div>
-      <div class="sw">
-        <div class="io" aria-label="What the property model takes and returns">
-          <h3>You enter</h3>
-          <ul>
-            <li>1 to 3 chemical structures</li><li>Their proportions</li><li>Temperature</li><li>Pressure</li>
-          </ul>
-          <div class="arrow">Property model, then cold plate model</div>
-          <h3>You get back</h3>
-          <ul class="out">
-            <li>Density</li><li>Viscosity</li><li>Heat capacity</li><li>Thermal conductivity</li><li>Uncertainty estimate</li><li>Pressure drop</li><li>Pump power</li><li>Thermal performance</li>
-          </ul>
-        </div>
-        <div style="display:grid;gap:1.6rem;min-width:0">
-          <dl class="caps">
-            <div><dt>Predict fluid properties</dt><dd>Get density, viscosity, heat capacity and thermal conductivity for a mixture, each with an uncertainty estimate.</dd></div>
-            <div><dt>See what the fluid does in a system</dt><dd>Compare fluids on pressure drop, pump power and thermal performance in a cold plate loop.</dd></div>
-            <div><dt>Screen before you buy chemicals</dt><dd>Flag flammability, PFAS structures and corrosive functional groups before a candidate reaches the bench.</dd></div>
-            <div><dt>Choose the next experiment</dt><dd>Search formulations across competing objectives and rank the experiments most likely to teach you something.</dd></div>
+      <div class="cards">
+        <article class="card">
+          <div class="card-top"><h3 class="card-name">MS-PG25</h3><span class="pill pill-ok">Available</span></div>
+          <p>A 25% propylene glycol coolant with a phosphate-free organic acid inhibitor package. For loops designed around PG25, the fluid the Open Compute Project's guidelines are written for.</p>
+          <dl class="specs">
+            <div><dt>Glycol</dt><dd>25% propylene glycol</dd></div>
+            <div><dt>Inhibitors</dt><dd>Phosphate-free organic acid</dd></div>
+            <div><dt>Use</dt><dd>Direct-to-chip cold plate loops</dd></div>
           </dl>
-          <div class="limits">
-            <h3>What the models don't do</h3>
-            <p>They cover single-phase liquids and homogeneous mixtures. They don't cover nanofluids, suspensions or undisclosed inhibitor packages, and they don't replace corrosion, compatibility or service life testing. When a molecule falls outside what the models know, they say so.</p>
-          </div>
-          <div><a class="btn btn-line" href="#contact">Ask about licensing</a></div>
-        </div>
+          <a class="btn btn-blue" href="mailto:sales@matscienceai.com?subject=MS-PG25%20datasheet%20request">Request MS-PG25 datasheet</a>
+        </article>
+        <article class="card">
+          <div class="card-top"><h3 class="card-name">MS-DC6</h3><span class="pill pill-ok">Available</span></div>
+          <p>A water-based, low-glycol coolant with a corrosion inhibitor package, formulated and made in-house. For loops where you want less glycol in the fluid than a PG25 carries.</p>
+          <dl class="specs">
+            <div><dt>Glycol</dt><dd>Low glycol, water-based</dd></div>
+            <div><dt>Inhibitors</dt><dd>Corrosion inhibitor package, made in-house</dd></div>
+            <div><dt>Use</dt><dd>Direct-to-chip cold plate loops</dd></div>
+          </dl>
+          <a class="btn btn-blue" href="mailto:sales@matscienceai.com?subject=MS-DC6%20datasheet%20request">Request MS-DC6 datasheet</a>
+        </article>
+        <article class="card">
+          <div class="card-top"><h3 class="card-name">MS-PG0</h3><span class="pill pill-dev">In development</span></div>
+          <p>A coolant with no propylene glycol in it at all. It isn't available yet and we haven't set a release date. Register your interest and we'll keep you posted.</p>
+          <dl class="specs">
+            <div><dt>Glycol</dt><dd>None</dd></div>
+            <div><dt>Inhibitors</dt><dd>To be announced</dd></div>
+            <div><dt>Availability</dt><dd>No release date yet</dd></div>
+          </dl>
+          <a class="btn btn-ghost" href="mailto:sales@matscienceai.com?subject=MS-PG0%20early%20interest">Register interest in MS-PG0</a>
+        </article>
       </div>
+      <p class="cards-note">Full test data for MS-PG25 and MS-DC6 is available under NDA.</p>
     </div>
   </section>
 
-  <section class="block" id="codev" aria-labelledby="codev-h">
+  <section class="band-white band-pad" id="why" aria-labelledby="why-h">
+    <div class="wrap why-grid">
+      <div class="split-copy">
+        <h2 id="why-h">Why MatScienceAI</h2>
+        <p>We design fluids with machine learning and physics models, then prove them where it counts: inside running AI data centers.</p>
+        <div><a class="btn btn-blue" href="#contact">Talk to an engineer</a></div>
+      </div>
+      <ul class="ticks">
+          <li><svg viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m6.5 11.2 3 3 6-6.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Validated in production AI data centers, with deployments running for up to three years</span></li>
+          <li><svg viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m6.5 11.2 3 3 6-6.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Formulated with models trained on more than a million published property measurements</span></li>
+          <li><svg viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m6.5 11.2 3 3 6-6.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>30+ years of manufacturing experience, from first formula to factory output</span></li>
+          <li><svg viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m6.5 11.2 3 3 6-6.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Datasheets, safety data sheets and samples on request, with full test data under NDA</span></li>
+        </ul>
+    </div>
+  </section>
+
+  <section class="band-grey band-pad" id="more" aria-labelledby="more-h">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="codev-h">Develop a new material with us</h2>
-        <p>If you have an application and no fluid that meets it, we'll work on it together. Ownership and confidentiality are agreed before any data is shared.</p>
+        <h2 id="more-h">More than coolants</h2>
+        <p>Coolants are where we started. The same models and manufacturing know-how go into new materials and into our partners' R&amp;D.</p>
       </div>
-      <ol class="steps">
-        <li><h3>You bring the application</h3><p>The performance target, the operating conditions, and what the material has to survive.</p></li>
-        <li><h3>We narrow the candidates</h3><p>Our models screen the options and propose the formulations worth making.</p></li>
-        <li><h3>We make and test together</h3><p>Candidates go to the lab, using standard ASTM methods where they apply.</p></li>
-        <li><h3>Results sharpen the model</h3><p>Each measurement feeds the next round, until a formulation is ready to scale.</p></li>
-      </ol>
-      <div><a class="btn btn-line" href="#contact">Ask about co-development</a></div>
+      <div class="tiles">
+        <a class="tile tile-feature" href="magnesium.html">
+          <div class="tile-body">
+            <span class="pill pill-dev" style="justify-self:start">In development</span>
+            <h3>Magnesium alloys</h3>
+            <p>Magnesium is the lightest structural metal. We're bringing our development approach to magnesium alloys for lightweight parts.</p>
+            <span class="more">Learn about magnesium alloys</span>
+          </div>
+          <img src="assets/images/magnesium-rods.jpg" width="386" height="384" alt="Stacked magnesium alloy rods" loading="lazy">
+        </a>
+        <a class="tile" href="mailto:sales@matscienceai.com?subject=Predictive%20software%20licensing">
+          <h3>Predictive software</h3>
+          <p>License the machine learning and physics models we use. Predict density, viscosity, heat capacity and thermal conductivity, then see what a fluid does in a cold plate loop.</p>
+          <span class="more">Ask about licensing</span>
+        </a>
+        <a class="tile" href="mailto:sales@matscienceai.com?subject=Joint%20materials%20co-development">
+          <h3>Joint co-development</h3>
+          <p>Bring an application that no material meets yet. We bring the models, formulation chemistry and manufacturing, and agree ownership up front.</p>
+          <span class="more">Start a project</span>
+        </a>
+      </div>
     </div>
   </section>
 
-  <section class="block" id="blog" aria-labelledby="blog-h" style="padding-top:0">
-    <div class="wrap" style="padding-top:0">
-      <div class="section-head">
-        <h2 id="blog-h">Liquid cooling, explained with sources</h2>
-      </div>
-      <article class="post">
+  <section class="band-grey" aria-labelledby="res-h" style="padding-bottom:clamp(3.5rem,7vw,6rem)">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:1.4rem"><h2 id="res-h">From the blog</h2></div>
+      <article class="resource">
         <div>
-          <time datetime="2026-11-04">November 4, 2026</time>
+          <span class="kind">Article, November 4, 2026</span>
           <h3>Can you mix PG25 coolants from different suppliers?</h3>
           <p>What OCP's 2026 documents say, what the only public mixing test we found shows, and how to change fluids.</p>
         </div>
-        <a class="btn btn-line" href="https://www.matscienceai.com/blog" target="_blank" rel="noopener">Read on the blog</a>
+        <a class="btn btn-ghost" href="https://www.matscienceai.com/blog" target="_blank" rel="noopener">Read the article</a>
       </article>
     </div>
   </section>
 
-  <section class="contact" id="contact" aria-labelledby="contact-h">
-    <div class="wrap">
+  <section class="band-black band-pad" id="contact" aria-labelledby="contact-h">
+    <div class="wrap contact-grid">
       <div>
-        <h2 id="contact-h">Tell us about your loop</h2>
-        <p>Share your rack density, loop design and timeline. We'll reply within 1 to 2 business days with the documents for the fluid that fits.</p>
+        <h2 id="contact-h">Talk to our engineers</h2>
+        <p class="contact-lede">Tell us your loop design, rack density and timeline. We'll send the documents for the fluid that fits.</p>
+        <div class="email-big"><code id="email">sales@matscienceai.com</code><button class="copy-btn" type="button" data-copy="email">Copy</button></div>
+        <p class="reply-time">We reply within 1 to 2 business days.</p>
       </div>
-      <div class="contact-actions">
-        <a class="btn btn-solid" href="mailto:sales@matscienceai.com">Email sales</a>
-        <div class="email"><code id="email">sales@matscienceai.com</code><button type="button" id="copyEmail">Copy address</button></div>
+      <div class="asks">
+        <a class="ask" href="mailto:sales@matscienceai.com?subject=Datasheet%20request"><div><b>Request a datasheet</b><span>MS-PG25 or MS-DC6, with the safety data sheet</span></div><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="ask" href="mailto:sales@matscienceai.com?subject=Sample%20request"><div><b>Request a sample</b><span>Test a coolant in your own loop</span></div><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="ask" href="mailto:sales@matscienceai.com?subject=NDA%20test%20data%20request"><div><b>Get full test data</b><span>Performance and test results, under NDA</span></div><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="ask" href="mailto:sales@matscienceai.com?subject=Technical%20consultation"><div><b>Ask a technical question</b><span>Loop design, fluid changeover, compatibility</span></div><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="site">
+<footer class="site-footer">
   <div class="wrap">
-    <span>© 2026 MatScienceAI</span>
-    <nav aria-label="Footer">
-      <a href="#coolants">Coolants</a><a href="#software">Predictive software</a><a href="#codev">Co-development</a><a href="#blog">Blog</a><a href="#contact">Contact</a>
-    </nav>
+    <div>
+      <a class="brand" href="index.html"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="1" y="1" width="26" height="26" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 16c2.6-3.2 5.6-3.2 8 0s5.4 3.2 8 0" fill="none" stroke="#1B5BFF" stroke-width="2.4" stroke-linecap="round"/></svg>MatScienceAI</a>
+      <p>A materials science company. Liquid coolants for AI data centers, with magnesium alloys in development.</p>
+    </div>
+    <div><h4>Liquid coolants</h4><ul><li><a href="#coolants">MS-PG25</a></li><li><a href="#coolants">MS-DC6</a></li><li><a href="#coolants">MS-PG0</a></li></ul></div>
+    <div><h4>Materials</h4><ul><li><a href="magnesium.html">Magnesium alloys</a></li><li><a href="#more">Predictive software</a></li><li><a href="#more">Co-development</a></li></ul></div>
+    <div><h4>Company</h4><ul><li><a href="#why">Why MatScienceAI</a></li><li><a href="https://www.matscienceai.com/blog" target="_blank" rel="noopener">Blog</a></li><li><a href="#contact">Contact</a></li></ul></div>
   </div>
+  <div class="footer-base"><div class="wrap"><span>© 2026 MatScienceAI. All rights reserved.</span><span>sales@matscienceai.com</span></div></div>
 </footer>
 
 <script>
-(function () {
-  var canvas = document.getElementById('loop');
-  var ctx = canvas.getContext('2d');
-  var W = 720, H = 460;
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var paused = reduce;
-  var toggle = document.getElementById('loopToggle');
-  if (reduce) { toggle.textContent = 'Play'; toggle.setAttribute('aria-pressed', 'true'); }
-
-  // Geometry in a 720 x 460 logical space
-  var trays = [118, 196, 274, 352];
-  var plate = { x0: 130, x1: 230 };
-  var RET_X = 58, SUP_X = 336, TOP_Y = 48, BOT_Y = 420;
-  var CDU = { x0: 476, y0: 150, x1: 636, y1: 332 };
-  var HX_IN = 582, HX_OUT = 524;
-
-  function pathFor(ty) {
-    return [
-      [HX_OUT, CDU.y1], [HX_OUT, BOT_Y], [SUP_X, BOT_Y], [SUP_X, ty],
-      [plate.x1, ty], [plate.x0, ty], [RET_X, ty], [RET_X, TOP_Y],
-      [HX_IN, TOP_Y], [HX_IN, CDU.y0], [HX_IN, 250], [HX_OUT, 250], [HX_OUT, CDU.y1]
-    ];
-  }
-  var paths = trays.map(function (ty) {
-    var pts = pathFor(ty), segs = [], total = 0;
-    for (var i = 0; i < pts.length - 1; i++) {
-      var a = pts[i], b = pts[i + 1], len = Math.hypot(b[0] - a[0], b[1] - a[1]);
-      segs.push({ a: a, b: b, s: total, len: len }); total += len;
-    }
-    // distances along the path where heating starts/ends and cooling starts/ends
-    var heatStart = segs[4].s, heatEnd = segs[4].s + segs[4].len;
-    var coolStart = segs[9].s, coolEnd = segs[11].s + segs[11].len;
-    return { pts: pts, segs: segs, total: total, heatStart: heatStart, heatEnd: heatEnd, coolStart: coolStart, coolEnd: coolEnd };
+document.querySelectorAll('[data-copy]').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var el = document.getElementById(btn.dataset.copy);
+    function selectIt() { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected'; }
+    try { navigator.clipboard.writeText(el.textContent).then(function () { btn.textContent = 'Copied'; }, selectIt); } catch (e) { selectIt(); }
   });
-  function at(p, d) {
-    d = ((d % p.total) + p.total) % p.total;
-    for (var i = 0; i < p.segs.length; i++) {
-      var s = p.segs[i];
-      if (d <= s.s + s.len) { var t = (d - s.s) / s.len; return [s.a[0] + (s.b[0] - s.a[0]) * t, s.a[1] + (s.b[1] - s.a[1]) * t]; }
-    }
-    return p.pts[0];
-  }
-  function tempAt(p, d) {
-    d = ((d % p.total) + p.total) % p.total;
-    if (d < p.heatStart) return 0;
-    if (d < p.heatEnd) return (d - p.heatStart) / (p.heatEnd - p.heatStart);
-    if (d < p.coolStart) return 1;
-    if (d < p.coolEnd) return 1 - (d - p.coolStart) / (p.coolEnd - p.coolStart);
-    return 0;
-  }
-  var particles = [];
-  paths.forEach(function (p, pi) {
-    var n = Math.round(p.total / 26);
-    for (var i = 0; i < n; i++) particles.push({ p: pi, d: (i / n) * p.total + pi * 7 });
-  });
-
-  function hexToRgb(h) {
-    h = h.trim().replace('#', '');
-    if (h.length === 3) h = h.split('').map(function (c) { return c + c; }).join('');
-    var n = parseInt(h, 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-  }
-  function mix(a, b, t) { return 'rgb(' + [0, 1, 2].map(function (i) { return Math.round(a[i] + (b[i] - a[i]) * t); }).join(',') + ')'; }
-  function tokens() {
-    var cs = getComputedStyle(document.documentElement);
-    var g = function (n) { return cs.getPropertyValue(n).trim(); };
-    return { ink: g('--ink'), muted: g('--muted'), line: g('--line'), surface: g('--surface'), paper: g('--paper'), cool: hexToRgb(g('--cool')), warm: hexToRgb(g('--warm')), coolS: g('--cool'), warmS: g('--warm'), display: g('--display'), body: g('--body') };
-  }
-
-  var scale = 1, dpr = 1;
-  function resize() {
-    var r = canvas.getBoundingClientRect();
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    scale = r.width / W;
-    canvas.width = Math.round(r.width * dpr);
-    canvas.height = Math.round(r.width * (H / W) * dpr);
-  }
-
-  function roundRect(x, y, w, h, r) { ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x, y, w, h, r) : ctx.rect(x, y, w, h); }
-  function label(text, x, y, opts) {
-    opts = opts || {};
-    var px = (opts.size || 12) / scale;
-    ctx.font = (opts.weight || 500) + ' ' + px + 'px ' + (opts.family || T.body);
-    ctx.fillStyle = opts.color || T.muted;
-    ctx.textAlign = opts.align || 'left';
-    ctx.textBaseline = opts.base || 'alphabetic';
-    ctx.fillText(text, x, y);
-  }
-
-  var T = tokens(), t0 = performance.now(), last = t0, clock = 0;
-  function draw(now) {
-    var dt = Math.min(0.05, (now - last) / 1000); last = now;
-    if (!paused) clock += dt;
-    T = tokens();
-    ctx.setTransform(dpr * scale, 0, 0, dpr * scale, 0, 0);
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = T.surface; ctx.fillRect(0, 0, W, H);
-
-    // Rack frame and trays
-    ctx.lineWidth = 1.5; ctx.strokeStyle = T.line;
-    roundRect(36, 72, 288, 330, 6); ctx.stroke();
-    trays.forEach(function (ty, i) {
-      ctx.fillStyle = T.paper; ctx.strokeStyle = T.line; ctx.lineWidth = 1.2;
-      roundRect(74, ty - 26, 236, 52, 4); ctx.fill(); ctx.stroke();
-      // GPU heat glow, pulsing gently
-      var pulse = 0.55 + 0.25 * Math.sin(clock * 1.6 + i * 1.3);
-      var g = ctx.createRadialGradient(180, ty, 4, 180, ty, 62);
-      g.addColorStop(0, mix(T.warm, T.warm, 0).replace('rgb', 'rgba').replace(')', ',' + (0.38 * pulse) + ')'));
-      g.addColorStop(1, mix(T.warm, T.warm, 0).replace('rgb', 'rgba').replace(')', ',0)'));
-      ctx.fillStyle = g; ctx.fillRect(110, ty - 26, 140, 52);
-      // die + cold plate
-      ctx.fillStyle = T.ink; ctx.globalAlpha = 0.85; ctx.fillRect(160, ty + 6, 40, 8); ctx.globalAlpha = 1;
-      ctx.fillStyle = T.surface; ctx.strokeStyle = T.ink; ctx.lineWidth = 1.4;
-      roundRect(plate.x0, ty - 9, plate.x1 - plate.x0, 14, 3); ctx.fill(); ctx.stroke();
-    });
-
-    // CDU
-    ctx.fillStyle = T.paper; ctx.strokeStyle = T.ink; ctx.lineWidth = 1.5;
-    roundRect(CDU.x0, CDU.y0, CDU.x1 - CDU.x0, CDU.y1 - CDU.y0, 6); ctx.fill(); ctx.stroke();
-    // heat exchanger plates
-    ctx.strokeStyle = T.line; ctx.lineWidth = 1;
-    for (var k = 0; k < 7; k++) { var yy = 196 + k * 16; ctx.beginPath(); ctx.moveTo(552, yy); ctx.lineTo(610, yy); ctx.stroke(); }
-    // facility water stubs
-    ctx.strokeStyle = T.muted; ctx.lineWidth = 4; ctx.lineCap = 'round';
-    [214, 266].forEach(function (y) { ctx.beginPath(); ctx.moveTo(CDU.x1, y); ctx.lineTo(706, y); ctx.stroke(); });
-    ctx.lineCap = 'butt';
-
-    // Pipes (drawn once, from the first tray path plus each tray branch)
-    ctx.strokeStyle = T.line; ctx.lineWidth = 7; ctx.lineJoin = 'round';
-    paths.forEach(function (p) {
-      ctx.beginPath(); ctx.moveTo(p.pts[0][0], p.pts[0][1]);
-      for (var i = 1; i < 9; i++) ctx.lineTo(p.pts[i][0], p.pts[i][1]);
-      ctx.stroke();
-    });
-
-    // Particles
-    var speed = 58;
-    particles.forEach(function (q) {
-      var p = paths[q.p], d = q.d + clock * speed;
-      var pos = at(p, d), tt = tempAt(p, d);
-      ctx.fillStyle = mix(T.cool, T.warm, tt);
-      ctx.beginPath(); ctx.arc(pos[0], pos[1], 2.9, 0, Math.PI * 2); ctx.fill();
-    });
-
-    // Labels
-    var small = scale < 0.62;
-    label('CDU', CDU.x0 + 14, CDU.y0 + 26, { size: 15, weight: 700, family: T.display, color: T.ink });
-    if (!small) label('PG25 or DC6', CDU.x0 + 14, CDU.y0 + 26 + 17 / scale, { size: 12 });
-    label('GPU rack', 44, 66, { size: 13, weight: 600, color: T.ink, base: 'bottom' });
-    if (!small) {
-      label('Cold plate on each GPU', 180, trays[0] - 32, { align: 'center', base: 'bottom' });
-      label('Rack manifold', SUP_X + 10, 300, {});
-      label('Return', 400, TOP_Y - 10, { color: T.warmS, weight: 600 });
-      label('Supply', 400, BOT_Y + 22, { color: T.coolS, weight: 600 });
-      label('Facility', 712, 290, { align: 'right', base: 'top' });
-      label('water', 712, 290 + 15 / scale, { align: 'right', base: 'top' });
-    }
-
-    requestAnimationFrame(draw);
-  }
-
-  resize();
-  window.addEventListener('resize', resize);
-  requestAnimationFrame(draw);
-
-  toggle.addEventListener('click', function () {
-    paused = !paused;
-    toggle.textContent = paused ? 'Play' : 'Pause';
-    toggle.setAttribute('aria-pressed', String(paused));
-  });
-
-  document.getElementById('copyEmail').addEventListener('click', function (e) {
-    var btn = e.currentTarget, text = document.getElementById('email').textContent;
-    function selectIt() { var r = document.createRange(); r.selectNodeContents(document.getElementById('email')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected, press Ctrl+C'; }
-    try {
-      navigator.clipboard.writeText(text).then(function () { btn.textContent = 'Copied'; }, selectIt);
-    } catch (err) { selectIt(); }
-  });
-})();
+});
 </script>
-
 </body>
 </html>
