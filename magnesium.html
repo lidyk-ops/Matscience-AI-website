@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Magnesium Alloys | MatScienceAI</title>
 <meta name="description" content="MatScienceAI is developing magnesium alloys for lightweight parts, using the same model-first approach behind its liquid coolants.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Schibsted+Grotesk:wght@500;600;700&display=swap">
+<link rel="preload" href="assets/fonts/schibsted-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
@@ -91,10 +90,22 @@
         <div class="email-big"><code id="email">sales@matscienceai.com</code><button class="copy-btn" type="button" data-copy="email">Copy</button></div>
         <p class="reply-time">We reply within 1 to 2 business days.</p>
       </div>
-      <div class="asks">
-        <a class="ask" href="mailto:sales@matscienceai.com?subject=Magnesium%20alloys%20early%20interest"><div><b>Register interest</b><span>Hear when the first alloys are ready to sample</span></div><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a class="ask" href="mailto:sales@matscienceai.com?subject=Magnesium%20alloy%20co-development"><div><b>Develop an alloy with us</b><span>Bring an application; ownership agreed up front</span></div><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      </div>
+      <form class="lead-form" id="leadForm" novalidate data-endpoint="" data-default-product="Magnesium alloys">
+        <div class="lf-grid">
+          <div class="lf-field"><label for="lf-name">Name</label><input id="lf-name" name="name" type="text" autocomplete="name" required><p class="lf-error" id="lf-name-err"></p></div>
+          <div class="lf-field"><label for="lf-email">Work email</label><input id="lf-email" name="email" type="email" autocomplete="email" required><p class="lf-error" id="lf-email-err"></p></div>
+          <div class="lf-field"><label for="lf-company">Company</label><input id="lf-company" name="company" type="text" autocomplete="organization" required><p class="lf-error" id="lf-company-err"></p></div>
+          <div class="lf-field"><label for="lf-product">Product</label><select id="lf-product" name="product">
+            <option>Not sure yet</option><option>MS-PG25</option><option>MS-DC6</option><option>MS-PG0</option><option>Magnesium alloys</option><option>Predictive software</option><option>Joint co-development</option>
+          </select></div>
+          <div class="lf-field lf-wide"><label for="lf-need">What do you need?</label><select id="lf-need" name="need">
+            <option>Updates on availability</option><option>Datasheet and safety data sheet</option><option>A sample</option><option>Full test data (under NDA)</option><option>Technical question</option><option>Something else</option>
+          </select></div>
+          <div class="lf-field lf-wide"><label for="lf-msg">Tell us about your project <span class="lf-opt">(optional)</span></label><textarea id="lf-msg" name="message" rows="4" placeholder="The part, its loads and the environment it has to survive"></textarea></div>
+          <input class="lf-hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+        </div>
+        <div class="lf-actions"><button class="btn btn-blue" type="submit" id="lf-submit">Send request</button><p class="lf-status" id="lfStatus" aria-live="polite"></p></div>
+      </form>
     </div>
   </section>
 </main>
@@ -112,14 +123,6 @@
   <div class="footer-base"><div class="wrap"><span>© 2026 MatScienceAI. All rights reserved.</span><span>sales@matscienceai.com</span></div></div>
 </footer>
 
-<script>
-document.querySelectorAll('[data-copy]').forEach(function (btn) {
-  btn.addEventListener('click', function () {
-    var el = document.getElementById(btn.dataset.copy);
-    function selectIt() { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected'; }
-    try { navigator.clipboard.writeText(el.textContent).then(function () { btn.textContent = 'Copied'; }, selectIt); } catch (e) { selectIt(); }
-  });
-});
-</script>
+<script src="assets/site.js"></script>
 </body>
 </html>

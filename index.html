@@ -6,9 +6,8 @@
 <title>MatScienceAI</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="MatScienceAI is a materials science company. Our flagship line is liquid coolant for direct-to-chip cooling in AI data centers: MS-PG25, MS-DC6 and MS-PG0.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Schibsted+Grotesk:wght@500;600;700&display=swap">
+<link rel="preload" href="assets/fonts/schibsted-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
@@ -52,7 +51,7 @@
       <nav class="quickbar" aria-label="Quick links">
         <a href="#coolants">Find the right coolant for your loop<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <a href="#contact">Contact our sales team<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a href="mailto:sales@matscienceai.com?subject=Datasheet%20request">Request a datasheet<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#contact" data-need="Datasheet and safety data sheet">Request a datasheet<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </nav>
     </div>
   </div>
@@ -78,8 +77,18 @@
         <h2 id="coolants-h">Liquid coolants for direct-to-chip cooling</h2>
         <p>Three fluids for cold plate loops in AI data centers. Tell us about your loop and we'll send the datasheet, safety data sheet and sample details for the one that fits.</p>
       </div>
+      <fieldset class="finder" id="finder">
+        <legend>What does your loop need?</legend>
+        <div class="finder-options">
+          <label><input type="radio" name="finder" value="pg25"><span><b>Built around PG25</b><small>Designed to OCP guidelines</small></span></label>
+          <label><input type="radio" name="finder" value="dc6"><span><b>Less glycol</b><small>Lower glycol than a PG25</small></span></label>
+          <label><input type="radio" name="finder" value="pg0"><span><b>No glycol at all</b><small>Glycol-free fluid</small></span></label>
+          <label><input type="radio" name="finder" value="unsure"><span><b>Not sure yet</b><small>Ask one of our engineers</small></span></label>
+        </div>
+        <div class="finder-result" id="finderResult" aria-live="polite">Pick the option closest to your loop and we'll point you to the right coolant.</div>
+      </fieldset>
       <div class="cards">
-        <article class="card">
+        <article class="card" data-fluid="pg25">
           <div class="card-top"><h3 class="card-name">MS-PG25</h3><span class="pill pill-ok">Available</span></div>
           <p>A 25% propylene glycol coolant with a phosphate-free organic acid inhibitor package. For loops designed around PG25, the fluid the Open Compute Project's guidelines are written for.</p>
           <dl class="specs">
@@ -87,9 +96,9 @@
             <div><dt>Inhibitors</dt><dd>Phosphate-free organic acid</dd></div>
             <div><dt>Use</dt><dd>Direct-to-chip cold plate loops</dd></div>
           </dl>
-          <a class="btn btn-blue" href="mailto:sales@matscienceai.com?subject=MS-PG25%20datasheet%20request">Request MS-PG25 datasheet</a>
+          <a class="btn btn-blue" href="#contact" data-product="MS-PG25" data-need="Datasheet and safety data sheet">Request MS-PG25 datasheet</a>
         </article>
-        <article class="card">
+        <article class="card" data-fluid="dc6">
           <div class="card-top"><h3 class="card-name">MS-DC6</h3><span class="pill pill-ok">Available</span></div>
           <p>A water-based, low-glycol coolant with a corrosion inhibitor package, formulated and made in-house. For loops where you want less glycol in the fluid than a PG25 carries.</p>
           <dl class="specs">
@@ -97,9 +106,9 @@
             <div><dt>Inhibitors</dt><dd>Corrosion inhibitor package, made in-house</dd></div>
             <div><dt>Use</dt><dd>Direct-to-chip cold plate loops</dd></div>
           </dl>
-          <a class="btn btn-blue" href="mailto:sales@matscienceai.com?subject=MS-DC6%20datasheet%20request">Request MS-DC6 datasheet</a>
+          <a class="btn btn-blue" href="#contact" data-product="MS-DC6" data-need="Datasheet and safety data sheet">Request MS-DC6 datasheet</a>
         </article>
-        <article class="card">
+        <article class="card" data-fluid="pg0">
           <div class="card-top"><h3 class="card-name">MS-PG0</h3><span class="pill pill-dev">In development</span></div>
           <p>A coolant with no propylene glycol in it at all. It isn't available yet and we haven't set a release date. Register your interest and we'll keep you posted.</p>
           <dl class="specs">
@@ -107,7 +116,7 @@
             <div><dt>Inhibitors</dt><dd>To be announced</dd></div>
             <div><dt>Availability</dt><dd>No release date yet</dd></div>
           </dl>
-          <a class="btn btn-ghost" href="mailto:sales@matscienceai.com?subject=MS-PG0%20early%20interest">Register interest in MS-PG0</a>
+          <a class="btn btn-ghost" href="#contact" data-product="MS-PG0" data-need="Updates on availability">Register interest in MS-PG0</a>
         </article>
       </div>
       <p class="cards-note">Full test data for MS-PG25 and MS-DC6 is available under NDA.</p>
@@ -146,12 +155,12 @@
           </div>
           <img src="assets/images/magnesium-rods.jpg" width="386" height="384" alt="Stacked magnesium alloy rods" loading="lazy">
         </a>
-        <a class="tile" href="mailto:sales@matscienceai.com?subject=Predictive%20software%20licensing">
+        <a class="tile" href="#contact" data-product="Predictive software" data-need="Something else">
           <h3>Predictive software</h3>
           <p>License the machine learning and physics models we use. Predict density, viscosity, heat capacity and thermal conductivity, then see what a fluid does in a cold plate loop.</p>
           <span class="more">Ask about licensing</span>
         </a>
-        <a class="tile" href="mailto:sales@matscienceai.com?subject=Joint%20materials%20co-development">
+        <a class="tile" href="#contact" data-product="Joint co-development" data-need="Something else">
           <h3>Joint co-development</h3>
           <p>Bring an application that no material meets yet. We bring the models, formulation chemistry and manufacturing, and agree ownership up front.</p>
           <span class="more">Start a project</span>
@@ -168,12 +177,22 @@
         <div class="email-big"><code id="email">sales@matscienceai.com</code><button class="copy-btn" type="button" data-copy="email">Copy</button></div>
         <p class="reply-time">We reply within 1 to 2 business days.</p>
       </div>
-      <div class="asks">
-        <a class="ask" href="mailto:sales@matscienceai.com?subject=Datasheet%20request"><div><b>Request a datasheet</b><span>MS-PG25 or MS-DC6, with the safety data sheet</span></div><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a class="ask" href="mailto:sales@matscienceai.com?subject=Sample%20request"><div><b>Request a sample</b><span>Test a coolant in your own loop</span></div><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a class="ask" href="mailto:sales@matscienceai.com?subject=NDA%20test%20data%20request"><div><b>Get full test data</b><span>Performance and test results, under NDA</span></div><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a class="ask" href="mailto:sales@matscienceai.com?subject=Technical%20consultation"><div><b>Ask a technical question</b><span>Loop design, fluid changeover, compatibility</span></div><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      </div>
+      <form class="lead-form" id="leadForm" novalidate data-endpoint="" data-default-product="Not sure yet">
+        <div class="lf-grid">
+          <div class="lf-field"><label for="lf-name">Name</label><input id="lf-name" name="name" type="text" autocomplete="name" required><p class="lf-error" id="lf-name-err"></p></div>
+          <div class="lf-field"><label for="lf-email">Work email</label><input id="lf-email" name="email" type="email" autocomplete="email" required><p class="lf-error" id="lf-email-err"></p></div>
+          <div class="lf-field"><label for="lf-company">Company</label><input id="lf-company" name="company" type="text" autocomplete="organization" required><p class="lf-error" id="lf-company-err"></p></div>
+          <div class="lf-field"><label for="lf-product">Product</label><select id="lf-product" name="product">
+            <option>Not sure yet</option><option>MS-PG25</option><option>MS-DC6</option><option>MS-PG0</option><option>Magnesium alloys</option><option>Predictive software</option><option>Joint co-development</option>
+          </select></div>
+          <div class="lf-field lf-wide"><label for="lf-need">What do you need?</label><select id="lf-need" name="need">
+            <option>Datasheet and safety data sheet</option><option>A sample</option><option>Full test data (under NDA)</option><option>Technical question</option><option>Updates on availability</option><option>Something else</option>
+          </select></div>
+          <div class="lf-field lf-wide"><label for="lf-msg">Tell us about your project <span class="lf-opt">(optional)</span></label><textarea id="lf-msg" name="message" rows="4" placeholder="Loop design, rack density, timeline"></textarea></div>
+          <input class="lf-hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+        </div>
+        <div class="lf-actions"><button class="btn btn-blue" type="submit" id="lf-submit">Send request</button><p class="lf-status" id="lfStatus" aria-live="polite"></p></div>
+      </form>
     </div>
   </section>
 </main>
@@ -191,14 +210,6 @@
   <div class="footer-base"><div class="wrap"><span>© 2026 MatScienceAI. All rights reserved.</span><span>sales@matscienceai.com</span></div></div>
 </footer>
 
-<script>
-document.querySelectorAll('[data-copy]').forEach(function (btn) {
-  btn.addEventListener('click', function () {
-    var el = document.getElementById(btn.dataset.copy);
-    function selectIt() { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected'; }
-    try { navigator.clipboard.writeText(el.textContent).then(function () { btn.textContent = 'Copied'; }, selectIt); } catch (e) { selectIt(); }
-  });
-});
-</script>
+<script src="assets/site.js"></script>
 </body>
 </html>
