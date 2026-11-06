@@ -73,6 +73,7 @@
     var status = document.getElementById('lfStatus');
     var submit = document.getElementById('lf-submit');
     setSelect('lf-product', form.dataset.defaultProduct);
+    setSelect('lf-need', form.dataset.defaultNeed);
 
     function fieldError(id, msg) {
       var input = document.getElementById(id), err = document.getElementById(id + '-err');

@@ -11,7 +11,8 @@ Redesign work for [matscienceai.com](https://www.matscienceai.com/): a homepage 
 | `assets/site.css` | Shared styles for every page. |
 | `assets/site.js` | Shared behaviour: coolant finder, contact form, copy button. |
 | `assets/fonts/` | Self-hosted fonts (IBM Plex Sans, Schibsted Grotesk; SIL OFL 1.1). No Google Fonts, so pages load reliably in mainland China. |
-| `assets/images/` | Product photos supplied by the team: `coolant-products.jpg`, `magnesium-rods.jpg`. |
+| `assets/images/` | Product photos supplied by the team: `coolant-products.jpg`, `magnesium-rods.jpg`. Team headshots in `team/` (cropped from the team slide, about 230 px wide; replace with originals when available). |
+| `about.html` | About page: team stats, the four team members, how research becomes product, contact form. |
 | `404.html` | Page-not-found page. Uses root-relative paths, so it works at any URL. |
 | `robots.txt`, `sitemap.xml` | Search engine files. They assume the site lives at https://www.matscienceai.com. |
 | `assets/favicon.svg` | Browser tab icon (placeholder mark until the real logo is in). |
