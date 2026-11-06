@@ -268,3 +268,19 @@ a.tile:hover { border-color: var(--ink); }
 .lf-done { display: grid; gap: 0.5rem; padding-block: 1rem; }
 .lf-done p { color: var(--muted-on-dark); }
 @media (max-width: 520px) { .lf-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Header actions and mobile menu */
+.header-actions { display: flex; align-items: center; gap: 0.6rem; }
+.menu-btn { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; background: transparent; color: var(--white); border: 1px solid #3A4750; border-radius: 4px; cursor: pointer; }
+.menu-btn svg { width: 22px; height: 22px; }
+@media (max-width: 900px) {
+  .menu-btn { display: inline-flex; }
+  .site-header .wrap { flex-wrap: wrap; }
+  .site-header.is-open .nav { display: flex; flex-direction: column; align-items: stretch; gap: 0; order: 3; width: 100%; padding-block: 0.4rem 0.6rem; border-top: 1px solid var(--line-dark); }
+  .site-header.is-open .nav a { padding: 0.85rem 0; font-size: var(--step-0); color: var(--white); border-bottom: 1px solid var(--line-dark); }
+  .site-header.is-open .nav a:last-child { border-bottom: 0; }
+}
+
+/* Skip link */
+.skip-link { position: absolute; left: 16px; top: -100px; z-index: 30; background: var(--blue); color: var(--white); padding: 0.7rem 1rem; border-radius: 4px; text-decoration: none; font-weight: 600; }
+.skip-link:focus { top: calc(env(safe-area-inset-top, 0px) + 12px); }

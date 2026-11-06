@@ -12,6 +12,9 @@ Redesign work for [matscienceai.com](https://www.matscienceai.com/): a homepage 
 | `assets/site.js` | Shared behaviour: coolant finder, contact form, copy button. |
 | `assets/fonts/` | Self-hosted fonts (IBM Plex Sans, Schibsted Grotesk; SIL OFL 1.1). No Google Fonts, so pages load reliably in mainland China. |
 | `assets/images/` | Product photos supplied by the team: `coolant-products.jpg`, `magnesium-rods.jpg`. |
+| `404.html` | Page-not-found page. Uses root-relative paths, so it works at any URL. |
+| `robots.txt`, `sitemap.xml` | Search engine files. They assume the site lives at https://www.matscienceai.com. |
+| `assets/favicon.svg` | Browser tab icon (placeholder mark until the real logo is in). |
 | `docs/research.md` | Design research: what works on LiquidStack, gaps on the current site, tool choices, sources. |
 | `docs/screenshots/` | Full-page captures of the current MatScienceAI homepage and of liquidstack.com, taken 2026-11-06. |
 
@@ -25,19 +28,14 @@ python3 -m http.server 8000
 
 Then visit http://localhost:8000.
 
-## Connect the contact form
+## Contact form
 
-The contact form on both pages posts to the URL in its `data-endpoint` attribute. Until that is set, submitting shows a message pointing people to sales@matscienceai.com with a pre-filled email.
+Both pages post to Formspree at `https://formspree.io/f/mvkkngyq` (set in the form's `data-endpoint` attribute). Each request arrives with a subject like `Website request: MS-PG25, Datasheet and safety data sheet (Acme)` and the visitor's address as reply-to.
 
-To make it deliver to your inbox with [Formspree](https://formspree.io) (free tier available):
-
-1. Create a Formspree account and a new form that sends to sales@matscienceai.com.
-2. Copy the form's endpoint, which looks like `https://formspree.io/f/abcdwxyz`.
-3. Paste it into `data-endpoint=""` on the `<form class="lead-form" ...>` line in both `index.html` and `magnesium.html`.
-
-Any service that accepts a JSON POST works the same way (HubSpot, a Vercel function, your own API). Fields sent: `name`, `email`, `company`, `product`, `need`, `message`, plus a `_gotcha` spam trap that should be empty.
-
-Check that whichever service you pick is reachable from mainland China if most leads come from there.
+- The first submission to a new Formspree form may ask you to confirm the inbox. Send one test request after deploying and check sales@matscienceai.com.
+- If a submission fails, visitors see a link that opens a pre-filled email to sales@matscienceai.com, so no request is lost.
+- Fields sent: `name`, `email`, `company`, `product`, `need`, `message`, `page`, plus Formspree's `_subject`, `_replyto` and the `_gotcha` spam trap.
+- If most leads come from mainland China, test a submission from there; switch `data-endpoint` to another JSON endpoint if Formspree is unreliable.
 
 ## Content notes
 
