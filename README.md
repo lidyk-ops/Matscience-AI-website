@@ -14,6 +14,7 @@ Redesign work for [matscienceai.com](https://www.matscienceai.com/): a homepage 
 | `assets/images/` | Product photos supplied by the team: `coolant-products.jpg`, `magnesium-rods.jpg`. Team headshots in `team/` (cropped from the team slide, about 230 px wide; replace with originals when available). |
 | `about.html` | About page: team stats, the four team members, how research becomes product, contact form. |
 | `404.html` | Page-not-found page. Uses root-relative paths, so it works at any URL. |
+| `vercel.json` | Hosting config for Vercel (long-term caching for fonts). |
 | `robots.txt`, `sitemap.xml` | Search engine files. They assume the site lives at https://www.matscienceai.com. |
 | `assets/favicon.svg` | Browser tab icon (placeholder mark until the real logo is in). |
 | `docs/research.md` | Design research: what works on LiquidStack, gaps on the current site, tool choices, sources. |
@@ -28,6 +29,18 @@ python3 -m http.server 8000
 ```
 
 Then visit http://localhost:8000.
+
+## Deploy (Vercel)
+
+The site is plain HTML, CSS and JS with no build step, so it deploys as-is.
+
+1. Sign in at https://vercel.com, ideally with the account that already hosts matscienceai.com.
+2. Add New → Project → Import the `lidyk-ops/Matscience-AI-website` repository (grant Vercel access to it if asked).
+3. Framework preset: **Other**. Leave Build Command and Output Directory empty. Click Deploy.
+
+After that, every push to `main` goes live automatically within about a minute, and every other branch gets its own preview URL. Any earlier version can be restored from the project's Deployments tab with "Promote to Production".
+
+To serve it on www.matscienceai.com, add the domain under the project's Settings → Domains. If the domain is attached to the old site's project, remove it there first. Do this only once the new site has been reviewed.
 
 ## Contact form
 
